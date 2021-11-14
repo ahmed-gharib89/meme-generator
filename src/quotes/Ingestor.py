@@ -1,12 +1,11 @@
 from typing import List
 
-from quotes import (
-    IngestorInterface,
-    CSVIngestor,
-    DocxIngestor,
-    PDFIngestor,
-    TextIngestor,
-)
+from .quote_model import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .CSVIngestor import CSVIngestor
+from .DocxIngestor import DocxIngestor
+from .PDFIngestor import PDFIngestor
+from .TextIngestor import TextIngestor
 
 
 class Ingestor(IngestorInterface):

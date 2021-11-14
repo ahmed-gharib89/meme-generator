@@ -16,7 +16,7 @@ from flask import Flask, render_template, abort, request
 from PIL import UnidentifiedImageError
 
 from quotes import Ingestor
-from MemeEngine import MemeEngine
+from meme_engine import MemeEngine
 
 app = Flask(__name__)
 

@@ -8,7 +8,6 @@
 #
 ##
 
-import os
 import pathlib
 from random import randint
 from PIL import Image, ImageDraw, ImageFont

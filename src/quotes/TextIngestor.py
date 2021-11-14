@@ -9,12 +9,9 @@
 ##
 from typing import List
 
-from quotes import (
-    QuoteModel,
-    IngestorInterface,
-    CannotIngestException,
-    parse_text,
-)
+from .quote_model import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .utility import CannotIngestException, parse_text
 
 
 class TextIngestor(IngestorInterface):

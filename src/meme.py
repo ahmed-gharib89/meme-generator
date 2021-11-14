@@ -3,7 +3,7 @@ import random
 import argparse
 
 from quotes import Ingestor, QuoteModel
-from MemeEngine import MemeEngine
+from meme_engine import MemeEngine
 
 
 def generate_meme(path=None, body=None, author=None):

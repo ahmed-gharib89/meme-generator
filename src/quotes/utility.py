@@ -8,7 +8,7 @@
 #
 ##
 from typing import List
-from quotes import QuoteModel
+from .quote_model import QuoteModel
 
 
 class CannotIngestException(Exception):

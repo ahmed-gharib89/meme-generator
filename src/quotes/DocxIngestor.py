@@ -11,7 +11,9 @@
 from typing import List
 import docx
 
-from quotes import QuoteModel, IngestorInterface, CannotIngestException
+from .quote_model import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .utility import CannotIngestException
 
 
 class DocxIngestor(IngestorInterface):

@@ -12,12 +12,9 @@ import os
 import random
 from typing import List
 
-from quotes import (
-    QuoteModel,
-    IngestorInterface,
-    CannotIngestException,
-    parse_text,
-)
+from .quote_model import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .utility import CannotIngestException, parse_text
 
 
 class PDFIngestor(IngestorInterface):
@@ -53,7 +50,9 @@ class PDFIngestor(IngestorInterface):
         print(tmp)
         print(path)
 
-        subprocess.run(("pdftotext", "-layout", "-nopgbrk", path, tmp))
+        subprocess.run(
+            ("pdftotext", "-layout", "-nopgbrk", path, tmp), check=True
+        )
 
         qoutes = parse_text(tmp)
         os.remove(tmp)

@@ -10,7 +10,9 @@
 import pandas as pd
 from typing import List
 
-from quotes import QuoteModel, IngestorInterface, CannotIngestException
+from .quote_model import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .utility import CannotIngestException, parse_text
 
 
 class CSVIngestor(IngestorInterface):
