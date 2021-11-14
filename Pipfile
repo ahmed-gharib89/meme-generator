@@ -4,6 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+requests = "*"
+flask = "*"
+pandas = "*"
+python-docx = "*"
 
 [dev-packages]
 bp = "*"
@@ -11,6 +15,10 @@ black = "*"
 pylint = "*"
 mypy = "*"
 pydocstyle = "*"
+bpython = "*"
 
 [requires]
 python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
