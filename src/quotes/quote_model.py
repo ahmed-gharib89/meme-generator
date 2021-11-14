@@ -18,7 +18,7 @@ class QuoteModel:
         """
         This function is the constructor of the QuoteModel class
         """
-        self.quote = body
+        self.body = body
         self.author = author
 
     def __str__(self) -> str:
@@ -27,7 +27,7 @@ class QuoteModel:
         Returns:
             str: Human readable string representation of QuoteModel.
         """
-        return f"{self.quote} - {self.author}"
+        return f"{self.body} - {self.author}"
 
     def __repr__(self) -> str:
         """Return a string representation of the Qoute model .

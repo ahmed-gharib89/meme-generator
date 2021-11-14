@@ -8,7 +8,7 @@
 #
 ##
 from typing import List
-from .QuoteModel import QuoteModel
+from quotes import QuoteModel
 
 
 class CannotIngestException(Exception):
@@ -32,7 +32,7 @@ def parse_text(fpath: str) -> List[QuoteModel]:
     for line in file_ref.readlines():
         line = line.strip("\n\r").strip()
         if len(line) > 0:
-            parse = line.split(",")
+            parse = line.split(" - ")
             new_qoute = QuoteModel(parse[0], parse[1])
             qoutes.append(new_qoute)
 

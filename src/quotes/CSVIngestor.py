@@ -4,30 +4,29 @@
 # PROGRAMMER: Ahmed Gharib
 # DATE CREATED: Sun Nov 14 2021
 # REVISED DATE: Sun Nov 14 2021
-# PURPOSE: PDFIngestor class
+# PURPOSE: CSVIngestor class
 #
 ##
+import pandas as pd
 from typing import List
 
-from .IngestorInterface import IngestorInterface
-from .QuoteModel import QuoteModel
-from .utility import CannotIngestException, parse_text
+from quotes import QuoteModel, IngestorInterface, CannotIngestException
 
 
-class TextIngestor(IngestorInterface):
-    """Import a text file into a Qoute object ."""
+class CSVIngestor(IngestorInterface):
+    """Import a csv file into a Qoute object ."""
 
-    allowed_extensions = ["pdf"]
+    allowed_extensions = ["csv"]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a text file containing the Qoutes.
+        """Parse a csv file containing the Qoutes.
 
         Args:
             path (str): path to the document to be ingested.
 
         Raises:
-            Exception: if the document is not a text file.
+            Exception: if the document is not a csv file.
 
         Returns:
             List[QuoteModel]: list of QuoteModel objects.
@@ -40,6 +39,11 @@ class TextIngestor(IngestorInterface):
             )
             raise CannotIngestException(msg)
 
-        qoutes = parse_text(path)
+        qoutes = []
+        df = pd.read_csv(path, header=0, encoding="utf-8")
+
+        for row in df.itertuples():
+            new_qoute = QuoteModel(row.body, row.author)
+            qoutes.append(new_qoute)
 
         return qoutes

@@ -11,7 +11,7 @@
 from abc import ABC, abstractmethod
 
 from typing import List
-from .QuoteModel import QuoteModel
+from quotes import QuoteModel
 
 
 class IngestorInterface(ABC):

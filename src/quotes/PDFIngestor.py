@@ -12,9 +12,12 @@ import os
 import random
 from typing import List
 
-from .IngestorInterface import IngestorInterface
-from .QuoteModel import QuoteModel
-from .utility import CannotIngestException, parse_text
+from quotes import (
+    QuoteModel,
+    IngestorInterface,
+    CannotIngestException,
+    parse_text,
+)
 
 
 class PDFIngestor(IngestorInterface):
@@ -42,10 +45,15 @@ class PDFIngestor(IngestorInterface):
                 f"allowed extensions: [{cls.allowed_extensions}]"
             )
             raise CannotIngestException(msg)
-        tmp = f"./tmp/{random.randint(0,100000000)}.txt"
-        if os.path.isdir("./tmp"):
-            os.mkdir("./tmp")
-        call = subprocess.call(["pdftotext", path, tmp])
+
+        tmp_dir = os.path.join(os.getcwd(), "tmp")
+        tmp = os.path.join(tmp_dir, f"{random.randint(0,100000000)}.txt")
+        os.makedirs(tmp_dir, exist_ok=True)
+        print(tmp_dir)
+        print(tmp)
+        print(path)
+
+        subprocess.run(("pdftotext", "-layout", "-nopgbrk", path, tmp))
 
         qoutes = parse_text(tmp)
         os.remove(tmp)

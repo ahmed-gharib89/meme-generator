@@ -11,9 +11,7 @@
 from typing import List
 import docx
 
-from .IngestorInterface import IngestorInterface
-from .QuoteModel import QuoteModel
-from .utility import CannotIngestException
+from quotes import QuoteModel, IngestorInterface, CannotIngestException
 
 
 class DocxIngestor(IngestorInterface):
@@ -47,7 +45,7 @@ class DocxIngestor(IngestorInterface):
 
         for para in doc.paragraphs:
             if para.text != "":
-                parse = para.text.split(",")
+                parse = para.text.split(" - ")
                 new_qoute = QuoteModel(parse[0], parse[1])
                 qoutes.append(new_qoute)
 

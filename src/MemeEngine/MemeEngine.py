@@ -55,9 +55,9 @@ class MemeEngine:
             img = img.resize((img_width, height), Image.NEAREST)
 
         draw = ImageDraw.Draw(img)
-        font_body = ImageFont.truetype("./fonts/RoadRage-Regular.ttf", size=20)
+        font_body = ImageFont.truetype("./fonts/RoadRage-Regular.ttf", size=30)
         font_auther = ImageFont.truetype(
-            "./fonts/RoadRage-Regular.ttf", size=15
+            "./fonts/RoadRage-Regular.ttf", size=20
         )
         qoute_positions = (30, randint(30, height - 40))
         draw.text(
@@ -80,7 +80,7 @@ class MemeEngine:
 
         fpath_part = f"{quote_author}-{quote_body}"
         count = self.counter_dict.get(fpath_part, 0)
-        out_path = self.output_dir_path / fpath_part + str(count) + ".png"
+        out_path = self.output_dir_path / (fpath_part + str(count) + ".png")
         self.counter_dict[fpath_part] = count + 1
 
         img.save(out_path)
