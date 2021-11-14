@@ -10,7 +10,7 @@
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-from .QouteModel import QouteModel
+from .QuoteModel import QuoteModel
 from .utility import CannotIngestException, parse_text
 
 
@@ -20,7 +20,7 @@ class TextIngestor(IngestorInterface):
     allowed_extensions = ["pdf"]
 
     @classmethod
-    def parse(cls, path: str) -> List[QouteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """Parse a text file containing the Qoutes.
 
         Args:
@@ -30,7 +30,7 @@ class TextIngestor(IngestorInterface):
             Exception: if the document is not a text file.
 
         Returns:
-            List[QouteModel]: list of QouteModel objects.
+            List[QuoteModel]: list of QuoteModel objects.
         """
         if not cls.can_ingest(path):
             msg = (

@@ -1,7 +1,6 @@
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-from .QouteModel import QouteModel
 from .DocxIngestor import DocxIngestor
 from .CSVIngestor import CSVIngestor
 from .PDFIngestor import PDFIngestor

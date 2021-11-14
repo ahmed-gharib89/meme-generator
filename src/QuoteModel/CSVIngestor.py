@@ -4,35 +4,34 @@
 # PROGRAMMER: Ahmed Gharib
 # DATE CREATED: Sun Nov 14 2021
 # REVISED DATE: Sun Nov 14 2021
-# PURPOSE: DocxIngestor class
+# PURPOSE: CSVIngestor class
 #
 ##
-
+import pandas as pd
 from typing import List
-import docx
 
 from .IngestorInterface import IngestorInterface
-from .QouteModel import QouteModel
+from .QuoteModel import QuoteModel
 from .utility import CannotIngestException
 
 
-class DocxIngestor(IngestorInterface):
-    """Import a docx file into a Qoute object ."""
+class CSVIngestor(IngestorInterface):
+    """Import a csv file into a Qoute object ."""
 
-    allowed_extensions = ["docx"]
+    allowed_extensions = ["csv"]
 
     @classmethod
-    def parse(cls, path: str) -> List[QouteModel]:
-        """Parse a docx file containing the Qoutes.
+    def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse a csv file containing the Qoutes.
 
         Args:
             path (str): path to the document to be ingested.
 
         Raises:
-            Exception: if the document is not a docx file.
+            Exception: if the document is not a csv file.
 
         Returns:
-            List[QouteModel]: list of QouteModel objects.
+            List[QuoteModel]: list of QuoteModel objects.
         """
         if not cls.can_ingest(path):
             msg = (
@@ -43,12 +42,10 @@ class DocxIngestor(IngestorInterface):
             raise CannotIngestException(msg)
 
         qoutes = []
-        doc = docx.Document(path)
+        df = pd.read_csv(path, header=0, encoding="utf-8")
 
-        for para in doc.paragraphs:
-            if para.text != "":
-                parse = para.text.split(",")
-                new_qoute = QouteModel(parse[0], parse[1])
-                qoutes.append(new_qoute)
+        for row in df.itertuples():
+            new_qoute = QuoteModel(row.body, row.author)
+            qoutes.append(new_qoute)
 
         return qoutes

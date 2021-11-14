@@ -8,6 +8,7 @@ requests = "*"
 flask = "*"
 pandas = "*"
 python-docx = "*"
+pillow = "*"
 
 [dev-packages]
 bp = "*"

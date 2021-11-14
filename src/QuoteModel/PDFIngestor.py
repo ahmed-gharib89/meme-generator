@@ -13,7 +13,7 @@ import random
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-from .QouteModel import QouteModel
+from .QuoteModel import QuoteModel
 from .utility import CannotIngestException, parse_text
 
 
@@ -23,7 +23,7 @@ class PDFIngestor(IngestorInterface):
     allowed_extensions = ["pdf"]
 
     @classmethod
-    def parse(cls, path: str) -> List[QouteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """Parse a pdf file containing the Qoutes.
 
         Args:
@@ -33,7 +33,7 @@ class PDFIngestor(IngestorInterface):
             Exception: if the document is not a pdf file.
 
         Returns:
-            List[QouteModel]: list of QouteModel objects.
+            List[QuoteModel]: list of QuoteModel objects.
         """
         if not cls.can_ingest(path):
             msg = (
@@ -43,6 +43,8 @@ class PDFIngestor(IngestorInterface):
             )
             raise CannotIngestException(msg)
         tmp = f"./tmp/{random.randint(0,100000000)}.txt"
+        if os.path.isdir("./tmp"):
+            os.mkdir("./tmp")
         call = subprocess.call(["pdftotext", path, tmp])
 
         qoutes = parse_text(tmp)

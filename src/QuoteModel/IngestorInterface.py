@@ -11,7 +11,7 @@
 from abc import ABC, abstractmethod
 
 from typing import List
-from .QouteModel import QouteModel
+from .QuoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
@@ -34,6 +34,6 @@ class IngestorInterface(ABC):
 
     @classmethod
     @abstractmethod
-    def parse(cls, path: str) -> List[QouteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """Abstract method to parse documents."""
         pass
